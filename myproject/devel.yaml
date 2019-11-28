@@ -140,7 +140,7 @@ services:
 
 networks:
     default:
-        internal: true
+        internal: false
     public:
 
 volumes:
