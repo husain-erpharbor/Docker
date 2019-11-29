@@ -10,8 +10,8 @@ services:
                 GID: "${GID:-1000}"
         environment:
             EMAIL_FROM: "$SMTP_DEFAULT_FROM"
-            PGDATABASE: &dbname prod
-            PGUSER: &dbuser "$DB_USER"
+            PGDATABASE: &postgres prod
+            PGUSER: &husain_eh "$DB_USER"
             DB_FILTER: "$DB_FILTER"
             PROXY_MODE: "$ODOO_PROXY_MODE"
         hostname: "$SMTP_REAL_NON_CANONICAL_DEFAULT"
@@ -29,8 +29,8 @@ services:
         image: tecnativa/postgres-autoconf:${DB_VERSION}-alpine
         shm_size: 512mb
         environment:
-            POSTGRES_DB: *dbname
-            POSTGRES_USER: *dbuser
+            POSTGRES_DB: postgres
+            POSTGRES_USER: husain_eh
             CONF_EXTRA: |
                 work_mem = 32MB
         volumes:
@@ -59,8 +59,8 @@ services:
             DST: "s3://s3.amazonaws.com/$BACKUP_S3_BUCKET"
             EMAIL_FROM: "$BACKUP_EMAIL_FROM"
             EMAIL_TO: "$BACKUP_EMAIL_TO"
-            PGDATABASE: *dbname
-            PGUSER: *dbuser
+            PGDATABASE: postgres
+            PGUSER: husain_eh
             SMTP_HOST: smtplocal
         volumes:
             - backup_cache:/root:z

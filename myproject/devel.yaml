@@ -63,8 +63,8 @@ services:
             file: common.yaml
             service: db
         environment:
-            POSTGRES_DB: *dbname
-            POSTGRES_PASSWORD: odoopassword
+            POSTGRES_DB: postgres
+            POSTGRES_PASSWORD: husain1234
 
     smtp:
         extends:
